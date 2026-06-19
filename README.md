@@ -6,9 +6,13 @@ Here's how to repurpose an old tablet PC into an Ereader
 - USB-drive to download Debian 13 iso on
 - Computer
 - USB keyboard
+#### Estimated time (Varies by transfer speed, I used relatively slow hardware)
+- Creating a bootable USB-drive etc ~30 min
+- Download Debian 13 terminal only ~30min-1h
+- Download KOReader etc ~5 min (Depending on internet speed)
 
 ### 0. If your device's UEFI firmware is 32-bit (As my DELL venue 8 pro's was)
-After creating a bootable USB (prefferably using **rufus**):
+After creating a bootable USB-drive (prefferably using **rufus**):
 - Download the `bootia32.efi` from this repository. Or look up how to create on on your own (Not too difficult).
 - Put the `bootia32.efi` file into the boot drive's EFI folder:
 ```bash
@@ -34,7 +38,7 @@ Once the device boots up:
 ```bash
 wget -O downloader.sh "https://raw.githubusercontent.com/R-ALD/Tablet-PC-Into-An-Ereader/refs/heads/main/downloader.sh" && bash downloader.sh
 ```
-- Once the device has rebooted, on its own, it should boot into KOReader straight away.
+Once the device has rebooted, on its own, it should boot into KOReader straight away.
 
 If you want to go back to terminal press `Ctrl + Alt + F2`
 
