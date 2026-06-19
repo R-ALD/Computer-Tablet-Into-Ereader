@@ -45,6 +45,14 @@ If you want to go back to terminal press `Ctrl + Alt + F2`
 #### 2.0 Change screen settings
 I recommend doing this while being in `KOReader` on your tablet and using ssh from your computer, to see the changes live.
 
+Log into remoteuser then run 
+```bash
+sudo su reader
+```
+The tablet displays the app using the user `reader`, so any changes in screen settings must be done as this user.
+
+You can't log into `reader` directly.
+
 #### 2.1 Screen brightness
 To change brightness use this command:
 ```bash
