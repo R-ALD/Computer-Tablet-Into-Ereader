@@ -1,6 +1,12 @@
 ## Make your tablet PC into an Ereader using KOReader
 Here's how to repurpose an old tablet PC into an Ereader
 
+#### What you'll need:
+- Docking station compatible with your tablet PC
+- USB-drive to download Debian 13 iso on
+- Computer
+- USB keyboard
+
 ### 0. If your device's UEFI firmware is 32-bit (As my DELL venue 8 pro's was)
 After creating a bootable USB (prefferably using **rufus**):
 - Download the `bootia32.efi` from this repository. Or look up how to create on on your own (Not too difficult).
@@ -19,7 +25,7 @@ At software selection check only these two:
 - ✅ SSH server (Optional but recommended)
 - ✅ standard system utilities
 
-(Using SSH you can just paste in the following commands from your computer instead of typing them in manually on the tablet's small screen)
+(Using SSH you can just paste in the following commands from your computer instead of typing them in manually)
 
 ### 2. Make tablet run KOReader at startup
 Once the device boots up:
