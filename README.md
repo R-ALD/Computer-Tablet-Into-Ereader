@@ -16,21 +16,21 @@ Create a user called `remoteuser` (Even if you won't be using SSH)
 The password should be easy to remember.
 
 At software selection check only these two:
-[x] SSH server (Optional but recommended)
-[x] standard system utilities
+- ✅ SSH server (Optional but recommended)
+- ✅ standard system utilities
 
 (Using SSH you can just paste in the following commands from your computer instead of typing them in manually on the tablet's small screen)
 
 ### 2. Make tablet run KOReader at startup
 Once the device boots up:
-- Log in as `root'.
+- Log in as `root`.
 - Run this command.
 ```bash
 wget -O downloader.sh "https://raw.githubusercontent.com/R-ALD/Tablet-PC-Into-An-Ereader/refs/heads/main/downloader.sh" && bash downloader.sh
 ```
 - Once the device has rebooted, on its own, it should boot into KOReader straight away.
 
-If you want to go back to terminal press `Ctrl + Alt + F2'
+If you want to go back to terminal press `Ctrl + Alt + F2`
 
 #### 2.0 Change screen settings
 I recommend doing this while being in `KOReader` on your tablet and using ssh from your computer, to see the changes live.
