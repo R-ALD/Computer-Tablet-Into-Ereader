@@ -64,6 +64,20 @@ export EMULATE_READER_DPI=280
 
 unclutter -idle 1 -root &
 
+# Reapply saved night-mode temperature when the X session starts.
+NIGHTMODE_K_FILE="$HOME/.config/nightmode/kelvin"
+if [ -r "$NIGHTMODE_K_FILE" ]; then
+    K="$(cat "$NIGHTMODE_K_FILE")"
+    case "$K" in
+        ''|*[!0-9]*) ;;
+        *)
+            if [ "$K" -ge 1000 ] && [ "$K" -le 6500 ]; then
+                redshift -m randr -P -O "$K" >/tmp/nightmode.log 2>&1
+            fi
+            ;;
+    esac
+fi
+
 exec /usr/bin/koreader /home/reader/Books
 EOF
 
@@ -112,6 +126,8 @@ cat >/usr/local/bin/nightmode <<'EOF'
 MIN_K=1000
 MAX_K=6500
 NORMAL_K=6500
+STATE_DIR="$HOME/.config/nightmode"
+STATE_FILE="$STATE_DIR/kelvin"
 
 # Use the KOReader/Xorg display.
 # Most startx kiosk setups use :0.
@@ -139,7 +155,7 @@ echo "  4500    = mild warm"
 echo "  $NORMAL_K  = normal daylight / off-ish"
 echo
 echo "Type:"
-echo "  off     = reset/disable night mode"
+echo "  off     = reset/disable night mode and forget saved setting"
 echo "  normal  = set to $NORMAL_K K"
 echo
 printf "Choose K between $MIN_K and $MAX_K, or type off: "
@@ -148,7 +164,8 @@ read -r K
 case "$K" in
     off|OFF|Off)
         if redshift -m randr -x; then
-            echo "Night mode disabled."
+            rm -f "$STATE_FILE"
+            echo "Night mode disabled. Saved setting removed."
         else
             echo "Failed to disable night mode. Is KOReader/Xorg running?"
             exit 1
@@ -173,7 +190,9 @@ if [ "$K" -lt "$MIN_K" ] || [ "$K" -gt "$MAX_K" ]; then
 fi
 
 if redshift -m randr -P -O "$K"; then
-    echo "Night mode set to ${K}K."
+    mkdir -p "$STATE_DIR"
+    printf '%s\n' "$K" > "$STATE_FILE"
+    echo "Night mode set to ${K}K and saved for reboot."
 else
     echo
     echo "Failed to set night mode."
