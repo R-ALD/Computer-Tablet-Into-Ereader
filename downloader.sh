@@ -117,4 +117,6 @@ EOF
 
 update-initramfs -u
 
+rm downloader.sh
+
 sudo reboot
