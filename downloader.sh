@@ -206,6 +206,6 @@ EOF
 
 chmod +x /usr/local/bin/nightmode
 
-rm downloader.sh
+rm ~/downloader.sh
 
 sudo reboot
